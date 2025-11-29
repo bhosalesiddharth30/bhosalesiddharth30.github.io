@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Siddharth Bhosale – Quant & Energy AI Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="Portfolio of Siddharth Sunil Bhosale – Quantitative risk, energy markets, algorithmic trading and AI projects." />
+
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #020617;
+      --card: #020617;
+      --card-soft: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --accent-strong: #22d3ee;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: rgba(148, 163, 184, 0.35);
+      --danger: #f97373;
+      --success: #4ade80;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        Segoe UI, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0b1120 0, #020617 55%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: 768px) {
+      header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .hero-main {
+      max-width: 640px;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-strong);
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.16s ease-out;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #020617;
+      border-color: transparent;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .meta span {
+      opacity: 0.8;
+    }
+
+    main {
+      margin-top: 32px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .section-headline {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .section-sub {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .filter-chip {
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.16s ease-out;
+    }
+
+    .filter-chip.active {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      border-color: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, #020617, #020617, #020617);
+      padding: 16px 16px 14px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out,
+        border-color 0.16s ease-out, background 0.16s ease-out;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left,
+          rgba(56, 189, 248, 0.08),
+          transparent 55%);
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+      border-color: rgba(56, 189, 248, 0.55);
+      background: radial-gradient(circle at top, #020617, #020617 55%, #000 100%);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      background: rgba(22, 163, 74, 0.08);
+      color: #bbf7d0;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .card-sub {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .pill {
+      font-size: 0.72rem;
+      border-radius: 999px;
+      padding: 2px 8px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+    }
+
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+      font-size: 0.82rem;
+    }
+
+    .card-links a {
+      color: var(--accent-strong);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      opacity: 0.9;
+    }
+
+    .card-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .card-detail {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.5;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out, opacity 0.2s ease-out;
+      opacity: 0;
+    }
+
+    .card.expanded .card-detail {
+      max-height: 280px;
+      opacity: 1;
+    }
+
+    .card-footer-note {
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-top: 4px;
+      opacity: 0.7;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .note-print {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Print styles for PDF export */
+    @media print {
+      body {
+        background: #ffffff;
+        color: #111827;
+      }
+
+      .shell {
+        padding: 16px 10px 16px;
+      }
+
+      header, .hero-actions {
+        background: #ffffff !important;
+      }
+
+      .card {
+        background: #ffffff;
+        border-color: #d1d5db;
+        box-shadow: none !important;
+      }
+
+      .filters {
+        display: none;
+      }
+
+      .note-print {
+        display: none;
+      }
+
+      .btn, .card-links a {
+        text-decoration: underline;
+        border: none;
+        padding: 0;
+      }
+
+      footer {
+        border-top-color: #d1d5db;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="hero-main">
+        <div class="tagline">Quant · Energy Markets · AI Engineering</div>
+        <h1>Siddharth Sunil Bhosale</h1>
+        <p class="hero-sub">
+          Master’s student in AI Engineering at THI (Germany), focused on
+          <strong>quantitative risk</strong>, <strong>energy-market forecasting</strong>,
+          and <strong>algorithmic trading</strong>. This portfolio collects my core
+          GitHub projects linking <em>ML, LLMs, quantum, and trading</em>.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-outline" href="#" onclick="window.print(); return false;">
+            Download PDF Portfolio
+          </a>
+        </div>
+
+        <p class="note-print">
+          Tip: “Download PDF Portfolio” uses your browser’s <strong>Save as PDF</strong>.
+          All GitHub/project links remain clickable in the PDF.
+        </p>
+      </div>
+
+      <div class="hero-side">
+        <div class="meta">
+          <span>Location: Ingolstadt, Germany</span><br />
+          <span>Focus: Energy markets, risk, AI & LLM tooling</span><br />
+          <span>GitHub: <a href="https://github.com/bhosalesiddharth30"
+                          target="_blank" rel="noopener noreferrer">
+            github.com/bhosalesiddharth30
+          </a></span>
+        </div>
+      </div>
+    </header>
+
+    <main id="projects">
+      <div class="section-header">
+        <div class="section-title">Portfolio</div>
+        <div class="section-headline">Quant, Energy & AI Projects</div>
+        <p class="section-sub">
+          Filter by theme or click on any card to expand details.
+          Projects are ordered with the most recent work at the top.
+        </p>
+      </div>
+
+      <div class="filters">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="risk">Risk & VaR</button>
+        <button class="filter-chip" data-filter="energy">Energy Markets</button>
+        <button class="filter-chip" data-filter="equity">Equity & Research</button>
+        <button class="filter-chip" data-filter="quant">Quant & Stats</button>
+        <button class="filter-chip" data-filter="llm">LLMs & Quantum</button>
+      </div>
+
+      <div class="grid">
+        <!-- 1. Azure Risk Metrics ETL -->
+        <article class="card" data-tags="risk energy quant">
+          <div class="card-badge">Latest · Azure Risk Pipeline</div>
+          <h2 class="card-title">Risk Metrics ETL &amp; Validation Pipeline (Azure + Streamlit)</h2>
+          <p class="card-sub">
+            Production-inspired ETL + validation pipeline for risk metrics
+            (P50/P95, spreads, deltas, vol) using simulated Azure ingestion,
+            YAML validation rules and a Streamlit monitoring dashboard.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">Azure Functions (sim)</span>
+            <span class="pill">Pandas</span>
+            <span class="pill">YAML rules</span>
+            <span class="pill">Streamlit</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/bhosalesiddharth30/risk-metrics-etl-validation-azure-streamlit"
+               target="_blank" rel="noopener noreferrer">GitHub Repo →</a>
+          </div>
+          <div class="card-detail">
+            Built to mirror quant-risk DevOps workflows: automated data ingestion,
+            cleaning and rule-based quality checks with <strong>GREEN / YELLOW / RED</strong>
+            flags. The dashboard exposes daily metrics, validation results and
+            health indicators – a realistic fit for energy-market risk teams.
+          </div>
+          <div class="card-footer-note">Click card to toggle more details.</div>
+        </article>
+
+        <!-- 2. Regulatory VaR Backtesting Engine -->
+        <article class="card" data-tags="risk quant">
+          <div class="card-badge">Risk · Regulatory</div>
+          <h2 class="card-title">Regulatory VaR &amp; ES Backtesting Engine</h2>
+          <p class="card-sub">
+            VaR backtesting engine with Basel-style traffic-light backtesting,
+            Kupiec test and automated risk diagnostics for trading portfolios.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">NumPy</span>
+            <span class="pill">SciPy</span>
+            <span class="pill">Matplotlib</span>
+            <span class="pill">Risk Backtesting</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/bhosalesiddharth30/regulatory-var-es-backtesting-engine"
+               target="_blank" rel="noopener noreferrer">GitHub Repo →</a>
+          </div>
+          <div class="card-detail">
+            Implements historical VaR/ES estimation and backtesting with
+            Basel traffic-light classification. Includes Kupiec test, hit
+            ratios and visual diagnostics to evaluate model adequacy and
+            regulatory capital implications.
+          </div>
+          <div class="card-footer-note">Good showcase of classical quant risk skills.</div>
+        </article>
+
+        <!-- 3. Equity Research Data Automation -->
+        <article class="card" data-tags="equity quant">
+          <div class="card-badge">Equity · Research Automation</div>
+          <h2 class="card-title">Equity Research Data Automation Dashboard</h2>
+          <p class="card-sub">
+            Automated equity + macro data pipeline with anomaly detection and
+            Excel-style dashboards for faster research and cleaner inputs for
+            valuation models.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">Pandas</span>
+            <span class="pill">Excel / Power Query</span>
+            <span class="pill">Power BI / Charts</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/bhosalesiddharth30/equity-research-data-automation"
+               target="_blank" rel="noopener noreferrer">GitHub Repo →</a>
+          </div>
+          <div class="card-detail">
+            Focuses on end-to-end automation: sourcing market &amp; macro time series,
+            cleaning &amp; merging in Python, flagging outliers, and exposing
+            clean slices to Excel dashboards for analysts. Emphasises reliability
+            of data rather than just modelling.
+          </div>
+          <div class="card-footer-note">Bridges between analytics teams and Excel-heavy users.</div>
+        </article>
+
+        <!-- 4. LLM-Guided Quantum Optimizer -->
+        <article class="card" data-tags="llm quant">
+          <div class="card-badge">LLM × Quantum</div>
+          <h2 class="card-title">LLM-Guided Quantum Optimization Framework</h2>
+          <p class="card-sub">
+            End-to-end framework that converts natural-language optimisation
+            tasks into QUBO formulations and solves them with QAOA-based
+            quantum circuits.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">Qiskit</span>
+            <span class="pill">PennyLane</span>
+            <span class="pill">LLM Tooling</span>
+            <span class="pill">QUBO / QAOA</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/bhosalesiddharth30/llm-quantum-optimizer"
+               target="_blank" rel="noopener noreferrer">GitHub Repo →</a>
+          </div>
+          <div class="card-detail">
+            Demonstrates how <strong>LLMs can act as optimisation front-ends</strong>,
+            structuring portfolio / routing / scheduling problems into QUBO form.
+            Includes modular quantum circuits, cost &amp; mixer Hamiltonians and
+            classical-quantum training loops.
+          </div>
+          <div class="card-footer-note">Good conversation starter for future-tech / research teams.</div>
+        </article>
+
+        <!-- 5. Probabilistic Transformer – Power Market -->
+        <article class="card" data-tags="energy quant">
+          <div class="card-badge">Energy · Forecasting</div>
+          <h2 class="card-title">Probabilistic Transformer – Power Market Forecasting</h2>
+          <p class="card-sub">
+            Quantile-based Transformer model to forecast day-ahead electricity
+            prices for the DE-LU power market using ENTSO-E data and
+            probabilistic calibration.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">PyTorch</span>
+            <span class="pill">Transformers</span>
+            <span class="pill">Quantile Loss</span>
+            <span class="pill">ENTSO-E</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/bhosalesiddharth30/Probabilistic_Transformer_PowerMarket_Forecasting"
+               target="_blank" rel="noopener noreferrer">GitHub Repo →</a>
+          </div>
+          <div class="card-detail">
+            Builds a full forecasting pipeline: feature engineering (calendar,
+            load, weather), probabilistic Transformer training, and evaluation
+            of prediction intervals for trading / risk scenarios.
+          </div>
+          <div class="card-footer-note">Shows deep learning applied to real energy data.</div>
+        </article>
+
+        <!-- 6. Energy-Market Sentiment & Price Forecasting -->
+        <article class="card" data-tags="energy quant llm">
+          <div class="card-badge">Energy · NLP</div>
+          <h2 class="card-title">Energy-Market Sentiment Analysis &amp; Price Forecasting</h2>
+          <p class="card-sub">
+            Trading framework combining FinBERT-based sentiment on news with
+            power fundamentals to forecast EPEX DE-LU day-ahead prices.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">FinBERT</span>
+            <span class="pill">NLP</span>
+            <span class="pill">Power Fundamentals</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/bhosalesiddharth30/Energy-Market-Sentiment-Analysis-and-Price-Forecasting"
+               target="_blank" rel="noopener noreferrer">GitHub Repo →</a>
+          </div>
+          <div class="card-detail">
+            Scrapes or consumes energy-news text, scores sentiment and maps it
+            against price moves and volatility regimes. Useful for building
+            intuition for narrative-driven price moves and for feature
+            generation in trading models.
+          </div>
+          <div class="card-footer-note">Nice bridge between NLP and commodity trading desks.</div>
+        </article>
+
+        <!-- 7. Cointegration Strategy – HDFC vs ICICI -->
+        <article class="card" data-tags="equity quant">
+          <div class="card-badge">Equity · Pairs Trading</div>
+          <h2 class="card-title">Cointegration Strategy – HDFC vs ICICI</h2>
+          <p class="card-sub">
+            Classical statistical-arbitrage pairs trading strategy built on
+            cointegration between HDFC Bank and ICICI Bank equities.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">Statsmodels</span>
+            <span class="pill">ADF / Johansen</span>
+            <span class="pill">Z-Score Signals</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/bhosalesiddharth30/Cointegration_Strategy_HDFC_ICICI"
+               target="_blank" rel="noopener noreferrer">GitHub Repo →</a>
+          </div>
+          <div class="card-detail">
+            Uses standard cointegration tests (ADF, Johansen) to identify
+            stable spread relationships, builds Z-score based entry/exit rules,
+            and backtests the strategy – providing a clean example of
+            equity-stat-arb logic.
+          </div>
+          <div class="card-footer-note">Core quant skill: cointegration & mean reversion.</div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> Siddharth Sunil Bhosale</span>
+      <span>
+        Contact: 
+        <a href="mailto:bhosalesiddharth30@gmail.com">bhosalesiddharth30@gmail.com</a> ·
+        LinkedIn:
+        <a href="https://www.linkedin.com/in/siddharth-bhosale-6164831bb"
+           target="_blank" rel="noopener noreferrer">Profile</a>
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Card expand / collapse
+    document.querySelectorAll(".card").forEach((card) => {
+      card.addEventListener("click", (e) => {
+        // Ignore clicks directly on links
+        if (e.target.tagName.toLowerCase() === "a") return;
+        card.classList.toggle("expanded");
+      });
+    });
+
+    // Filtering
+    const filterChips = document.querySelectorAll(".filter-chip");
+    const cards = document.querySelectorAll(".card");
+
+    filterChips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        filterChips.forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
+
+        const filter = chip.dataset.filter;
+        cards.forEach((card) => {
+          const tags = card.dataset.tags.split(" ");
+          const show = filter === "all" || tags.includes(filter);
+          card.style.display = show ? "block" : "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
